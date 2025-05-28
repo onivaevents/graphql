@@ -24,7 +24,7 @@ class CostDirective extends SchemaDirectiveVisitor
     /**
      * @param mixed[] $details
      */
-    public function visitFieldDefinition(FieldDefinition $field, array $details): void
+    public function visitFieldDefinition(FieldDefinition $field, array $details): mixed
     {
         $complexity = $this->args['complexity'] ?? null;
         $multipliers = $this->args['multipliers'];
@@ -53,11 +53,15 @@ class CostDirective extends SchemaDirectiveVisitor
         };
 
         ObjectAccess::setProperty($field, 'complexityFn', $complexityFn, true);
+
+        return $field;
     }
 
-    public function visitObject(ObjectType $object): void
+    public function visitObject(ObjectType $object): mixed
     {
         $complexity = $this->args['complexity'] ?? null;
         $this->objectComplexityMap[$object->name] = $complexity ?? 1;
+
+        return $object;
     }
 }

@@ -37,15 +37,19 @@ class AuthDirective extends SchemaDirectiveVisitor
     /**
      * @param mixed[] $details
      */
-    public function visitFieldDefinition(FieldDefinition $field, array $details): void
+    public function visitFieldDefinition(FieldDefinition $field, array $details): mixed
     {
         $this->wrapResolver($field);
+
+        return $field;
     }
 
-    public function visitObject(ObjectType $object): void
+    public function visitObject(ObjectType $object): mixed
     {
         foreach ($object->getFields() as $field) {
             $this->wrapResolver($field);
         }
+
+        return $object;
     }
 }

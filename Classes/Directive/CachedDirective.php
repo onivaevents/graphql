@@ -23,7 +23,7 @@ class CachedDirective extends SchemaDirectiveVisitor
     /**
      * @param mixed[] $details
      */
-    public function visitFieldDefinition(FieldDefinition $field, array $details): void
+    public function visitFieldDefinition(FieldDefinition $field, array $details): mixed
     {
         $resolve = $field->resolveFn ?? [DefaultFieldResolver::class, 'resolve'];
 
@@ -39,5 +39,7 @@ class CachedDirective extends SchemaDirectiveVisitor
             $this->cache->set($entryIdentifier, $result, $this->args['tags'], $this->args['maxAge']);
             return $result;
         };
+
+        return $field;
     }
 }
