@@ -38,7 +38,7 @@ class FlowErrorTransform implements Transform
     {
         $result->errors = array_map(function (Error $error) {
             $previousError = $error->getPrevious();
-            if (! $previousError instanceof Error) {
+            if ($previousError && ! $previousError instanceof Error) {
                 $message = $this->throwableStorage->logThrowable($previousError);
                 $this->logger->error('GraphQL response with error. The error has bubbled up to the next nullable field: ' . $message);
 
