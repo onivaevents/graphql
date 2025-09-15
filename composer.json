@@ -5,6 +5,7 @@
     "config": {
         "bin-dir": "bin"
     },
+    "license": "MIT",
     "require": {
         "neos/flow": "~7.0 || ^8.0 || dev-master",
         "oniva/graphql-tools": "^1.0",
