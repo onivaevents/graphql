@@ -652,6 +652,15 @@ Oniva:
 The `maxQueryComplexitiy` is calculated via the CostDirective.
 
 
+## Migration from t3n.GraphQL
+
+There is a code migration script to migrate your existing t3n.GraphQL installation to Oniva.GraphQL.
+
+Simply run the flow command:
+```bash
+./flow core:migrate
+```
+
 ## Acknowledgments
 This project is a fork of [t3n.GraphQL](https://github.com/t3n/graphql) originally developed by t3n.
 We thank the original contributors for their foundational work.
