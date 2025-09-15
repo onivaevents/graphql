@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace t3n\GraphQL\Service;
+namespace Oniva\GraphQL\Service;
 
 use GraphQL\Executor\Executor;
 use GraphQL\Type\Definition\ResolveInfo;

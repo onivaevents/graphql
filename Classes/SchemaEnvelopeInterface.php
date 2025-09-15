@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace t3n\GraphQL;
+namespace Oniva\GraphQL;
 
 use GraphQL\Type\Schema;
 

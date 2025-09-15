@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace t3n\GraphQL\Tests\Functional\Directive\Fixtures;
+namespace Oniva\GraphQL\Tests\Functional\Directive\Fixtures;
 
 use Neos\Flow\Annotations as Flow;
-use t3n\GraphQL\ResolverInterface;
+use Oniva\GraphQL\ResolverInterface;
 
 /**
  * @Flow\Scope("singleton")

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace t3n\graphql\Tests\Unit\Transform;
+namespace Oniva\GraphQL\Tests\Unit\Transform;
 
 use GraphQL\Error\Error;
 use GraphQL\Executor\ExecutionResult;
@@ -11,7 +11,7 @@ use Neos\Flow\Tests\UnitTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\LoggerInterface;
 use Exception;
-use t3n\GraphQL\Transform\FlowErrorTransform;
+use Oniva\GraphQL\Transform\FlowErrorTransform;
 
 class FlowErrorTransformTest extends UnitTestCase
 {

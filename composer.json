@@ -13,17 +13,17 @@
     },
     "autoload": {
         "psr-4": {
-            "t3n\\GraphQL\\": "Classes/"
+            "Oniva\\GraphQL\\": "Classes/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "t3n\\GraphQL\\": "Classes/"
+            "Oniva\\GraphQL\\": "Classes/"
         }
     },
     "extra": {
         "neos": {
-            "package-key": "t3n.GraphQL"
+            "package-key": "Oniva.GraphQL"
         }
     }
 }

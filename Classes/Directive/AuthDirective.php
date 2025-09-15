@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace t3n\GraphQL\Directive;
+namespace Oniva\GraphQL\Directive;
 
 use GraphQL\Error\Error;
 use GraphQL\Type\Definition\FieldDefinition;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQLTools\SchemaDirectiveVisitor;
 use Neos\Flow\Security\Context as SecurityContext;
-use t3n\GraphQL\Service\DefaultFieldResolver;
+use Oniva\GraphQL\Service\DefaultFieldResolver;
 
 class AuthDirective extends SchemaDirectiveVisitor
 {

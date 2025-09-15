@@ -1,6 +1,4 @@
-[![CircleCI](https://circleci.com/gh/t3n/graphql.svg?style=svg)](https://circleci.com/gh/t3n/graphql) [![Latest Stable Version](https://poser.pugx.org/t3n/graphql/v/stable)](https://packagist.org/packages/t3n/graphql) [![Total Downloads](https://poser.pugx.org/t3n/graphql/downloads)](https://packagist.org/packages/t3n/graphql)
-
-# t3n.GraphQL
+# Oniva.GraphQL
 
 Flow Package to add graphql APIs to [Neos and Flow](https://neos.io) that also supports advanced features like schema stitching, validation rules, schema directives and more.
 This package doesn't provide a GraphQL client to test your API. We suggest to use the [GraphlQL Playground](https://github.com/prisma/graphql-playground)
@@ -8,7 +6,7 @@ This package doesn't provide a GraphQL client to test your API. We suggest to us
 Simply install the package via composer:
 
 ```bash
-composer require "t3n/graphql"
+composer require "oniva/graphql"
 ```
 
 Version 2.x supports neos/flow >= 6.0.0
@@ -28,7 +26,7 @@ To make this possible, you first have to add the route to your `Routes.yaml`:
   uriPattern: 'api/<GraphQLSubroutes>'
   subRoutes:
     'GraphQLSubroutes':
-      package: 't3n.GraphQL'
+      package: 'Oniva.GraphQL'
       variables:
         'endpoint': 'my-endpoint'
 ```
@@ -69,7 +67,7 @@ schema {
 }
 ```
 
-Under the hood we use [t3n/graphql-tools](https://github.com/t3n/graphql-tools). This package is a php port from
+Under the hood we use [oniva/graphql-tools](https://github.com/onivaevents/graphql-tools). This package is a php port from
 [Apollos graphql-tools](https://github.com/apollographql/graphql-tools/). This enables you to use some advanced
 features like schema stitching. So it's possible to configure multiple schemas per endpoint. All schemas
 will be merged internally together to a single schema.
@@ -77,7 +75,7 @@ will be merged internally together to a single schema.
 Add a schema to your endpoint like this:
 
 ```yaml
-t3n:
+Oniva:
   GraphQL:
     endpoints:
       'my-endpoint': # use your endpoint variable here
@@ -99,7 +97,7 @@ extend type Query {
 ```
 
 ```yaml
-t3n:
+Oniva:
   GraphQL:
     endpoints:
       'my-endpoint': #
@@ -129,7 +127,7 @@ type Product {
 You might want to configure Resolver for both types:
 
 ```yaml
-t3n:
+Oniva:
   GraphQL:
     endpoints:
       'my-endpoint':
@@ -140,12 +138,12 @@ t3n:
               Product: 'Your\Package\GraphQL\Resolver\ProductResolver'
 ```
 
-Each resolver must implement `t3n\GraphQL\ResolverInterface` !
+Each resolver must implement `Oniva\GraphQL\ResolverInterface` !
 
 You can also add resolvers dynamically so you don't have to configure each resolver separately:
 
 ```yaml
-t3n:
+Oniva:
   GraphQL:
     endpoints:
       'my-endpoint':
@@ -160,10 +158,10 @@ With this configuration the class `Your\Package\GraphQL\Resolver\Type\ProductRes
 for queries on a Product type. The {Type} will evaluate to your type name.
 
 As a third option you can create resolvers programmatically. Therefore you can register a class that implements
-the `t3n\GraphQL\ResolverGeneratorInterface`. This might be useful to auto generate a resolver mapping:
+the `Oniva\GraphQL\ResolverGeneratorInterface`. This might be useful to auto generate a resolver mapping:
 
 ```yaml
-t3n:
+Oniva:
   GraphQL:
     endpoints:
       'my-endpoint':
@@ -189,7 +187,7 @@ A implementation for our example could look like this (pseudocode):
 namespace Your\Package\GraphQL\Resolver;
 
 use Neos\Flow\Annotations as Flow;
-use t3n\GraphQL\ResolverInterface;
+use Oniva\GraphQL\ResolverInterface;
 
 class QueryResolver implements ResolverInterface
 {
@@ -215,7 +213,7 @@ class QueryResolver implements ResolverInterface
 namespace Your\Package\GraphQL\Resolver\Type;
 
 use Neos\Flow\Annotations as Flow;
-use t3n\GraphQL\ResolverInterface;
+use Oniva\GraphQL\ResolverInterface;
 
 class ProductResolver implements ResolverInterface
 {
@@ -286,7 +284,7 @@ While the concrete Type Resolvers do not need any special attention, the `Person
 
 namespace Your\Package\GraphQL\Resolver\Type;
 
-use t3n\GraphQL\ResolverInterface;
+use Oniva\GraphQL\ResolverInterface;
 
 class PersonResolver implements ResolverInterface
 {
@@ -355,7 +353,7 @@ namespace Your\Package\GraphQL\Resolver\Type;
 use DateTime;
 use GraphQL\Language\AST\IntValueNode;
 use GraphQL\Language\AST\Node;
-use t3n\GraphQL\ResolverInterface;
+use Oniva\GraphQL\ResolverInterface;
 
 class DateTimeResolver implements ResolverInterface
 {
@@ -388,10 +386,10 @@ You have to make the `DateTimeResolver` available again through one of the confi
 ### Context
 
 The third argument in your Resolver method signature is the Context.
-By Default it's set to `t3n\GraphQContext` which exposes the current request.
+By Default it's set to `Oniva\GraphQContext` which exposes the current request.
 
 It's easy to set your very own Context per endpoint. This might be handy to share some Code or Objects
-between all your Resolver implementations. Make sure to extend `t3n\GraphQContext`
+between all your Resolver implementations. Make sure to extend `Oniva\GraphQContext`
 
 Let's say we have an graphql endpoint for a shopping basket (simplified):
 
@@ -424,7 +422,7 @@ input BasketItemInput {
 First of all configure your context for your shopping endpoint:
 
 ```yaml
-t3n:
+Oniva:
   GraphQL:
     endpoints:
       'shop':
@@ -449,7 +447,7 @@ namespace Your\Package\GraphQL;
 
 use Neos\Flow\Annotations as Flow;
 use Your\Package\Shop\Basket;
-use t3n\GraphQL\Context as BaseContext;
+use Oniva\GraphQL\Context as BaseContext;
 
 class ShoppingBasketContext extends BaseContext
 {
@@ -475,7 +473,7 @@ And the corresponding resolver classes:
 namespace Your\Package\GraphQL\Resolver;
 
 use Neos\Flow\Annotations as Flow;
-use t3n\GraphQL\ResolverInterface;
+use Oniva\GraphQL\ResolverInterface;
 
 class QueryResolver implements ResolverInterface
 {
@@ -495,7 +493,7 @@ class QueryResolver implements ResolverInterface
 namespace Your\Package\GraphQL\Resolver;
 
 use Neos\Flow\Annotations as Flow;
-use t3n\GraphQL\ResolverInterface;
+use Oniva\GraphQL\ResolverInterface;
 
 class MutationResolver implements ResolverInterface
 {
@@ -521,7 +519,7 @@ class MutationResolver implements ResolverInterface
 You can enable logging of incoming requests per endpoint:
 
 ```yaml
-t3n:
+Oniva:
   GraphQL:
     endpoints:
       'your-endpoint':
@@ -566,17 +564,17 @@ By default this package provides three directives:
 To enable those Directives add this configuration to your endpoint:
 
 ```yaml
-t3n:
+Oniva:
   GraphQL:
     endpoints:
       'your-endpoint':
         schemas:
           root: # use any key you like here
-            typeDefs: 'resource://t3n.GraphQL/Private/GraphQL/schema.root.graphql'
+            typeDefs: 'resource://Oniva.GraphQL/Private/GraphQL/schema.root.graphql'
         schemaDirectives:
-          auth: 't3n\GraphQL\Directive\AuthDirective'
-          cached: 't3n\GraphQL\Directive\CachedDirective'
-          cost: 't3n\GraphQL\Directive\CostDirective'
+          auth: 'Oniva\GraphQL\Directive\AuthDirective'
+          cached: 'Oniva\GraphQL\Directive\CachedDirective'
+          cost: 'Oniva\GraphQL\Directive\CostDirective'
 ```
 
 #### AuthDirective
@@ -604,7 +602,7 @@ type Query {
 }
 ```
 
-The CachedDirective will use a flow cache `t3n_GraphQL_Resolve` as a backend. The directive accepts a maxAge
+The CachedDirective will use a flow cache `Oniva_GraphQL_Resolve` as a backend. The directive accepts a maxAge
 argument as well as tags. Check the flow documentation about caching to learn about them!
 The cache entry identifier will respect all arguments (id in this example) as well as the query path.
 
@@ -636,7 +634,7 @@ There are several Validation rules you can enable per endpoint. The most common 
 rule. Configure your endpoint to enable those rules:
 
 ```yaml
-t3n:
+Oniva:
   GraphQL:
     endpoints:
       'some-endpoint':
@@ -652,3 +650,8 @@ t3n:
 ```
 
 The `maxQueryComplexitiy` is calculated via the CostDirective.
+
+
+## Acknowledgments
+This project is a fork of [t3n.GraphQL](https://github.com/t3n/graphql) originally developed by t3n.
+We thank the original contributors for their foundational work.

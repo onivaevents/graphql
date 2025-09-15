@@ -4,7 +4,7 @@ Neos:
       middlewares:
         'graphQLOptions':
           position: 'before routing'
-          middleware: 't3n\GraphQL\Http\HttpOptionsMiddleware'
+          middleware: 'Oniva\GraphQL\Http\HttpOptionsMiddleware'
     log:
       graphQLRequestLogger:
         logger: Neos\Flow\Log\Logger
@@ -17,13 +17,13 @@ Neos:
           logFilesToKeep: 1
           logMessageOrigin: false
 
-t3n:
+Oniva:
   GraphQL:
-    context: 't3n\GraphQL\Context'
+    context: 'Oniva\GraphQL\Context'
     includeExceptionMessageInOutput: true
     endpoints: []
 #      'some-endpoint':
 #        'logRequests': true  # if enabled all requests are logged
 #        'context:' 'Foo\Vendor\GraphQL\Context  # optional context that overrides the global context
 #        'schemaEnvelope': 'Some\Fully\Qualified\Namespace'
-#        'errorTransform': t3n\GraphQL\Transform\FlowErrorTransform # optional: override the default error transformer for this schema
+#        'errorTransform': Oniva\GraphQL\Transform\FlowErrorTransform # optional: override the default error transformer for this schema

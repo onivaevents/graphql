@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace t3n\GraphQL\Transform;
+namespace Oniva\GraphQL\Transform;
 
 use GraphQL\Error\Error;
 use GraphQL\Executor\ExecutionResult;

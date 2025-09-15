@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace t3n\GraphQL\Tests\Functional\Directive;
+namespace Oniva\GraphQL\Tests\Functional\Directive;
 
 use GraphQL\Executor\ExecutionResult;
 use GraphQL\GraphQL;
@@ -10,7 +10,7 @@ use GraphQL\Validator\Rules\QueryComplexity;
 use GraphQLTools\GraphQLTools;
 use Neos\Flow\Tests\FunctionalTestCase;
 use Neos\Utility\Files;
-use t3n\GraphQL\Directive\CostDirective;
+use Oniva\GraphQL\Directive\CostDirective;
 
 class CostDirectiveTest extends FunctionalTestCase
 {

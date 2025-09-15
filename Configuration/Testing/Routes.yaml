@@ -2,7 +2,7 @@
   name: 'test GraphQL API'
   uriPattern: 'api-test/test-endpoint'
   defaults:
-    '@package':    't3n.GraphQL'
+    '@package':    'Oniva.GraphQL'
     '@controller': 'GraphQL'
     '@action':     'query'
     '@format':     'json'

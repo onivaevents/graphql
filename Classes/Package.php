@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace t3n\GraphQL;
+namespace Oniva\GraphQL;
 
 use Neos\Flow\Cache\CacheManager;
 use Neos\Flow\Configuration\ConfigurationManager;
@@ -17,7 +17,7 @@ use Neos\Utility\Unicode\Functions;
 
 class Package extends BasePackage
 {
-    protected const FILE_MONITOR_IDENTIFIER = 't3n_GraphQL_Files';
+    protected const FILE_MONITOR_IDENTIFIER = 'Oniva_GraphQL_Files';
 
     /**
      * @param mixed[] $configuration
@@ -66,7 +66,7 @@ class Package extends BasePackage
             $packageManager = $bootstrap->getEarlyInstance(PackageManager::class);
             $endpointsConfiguration = $configurationManager->getConfiguration(
                 ConfigurationManager::CONFIGURATION_TYPE_SETTINGS,
-                't3n.GraphQL.endpoints'
+                'Oniva.GraphQL.endpoints'
             );
 
             foreach ($endpointsConfiguration as $endpointConfiguration) {
@@ -87,7 +87,7 @@ class Package extends BasePackage
 
                 /** @var CacheManager $cacheManager */
                 $cacheManager = $bootstrap->getObjectManager()->get(CacheManager::class);
-                $cacheManager->getCache('t3n_GraphQL_Schema')->flush();
+                $cacheManager->getCache('Oniva_GraphQL_Schema')->flush();
             }
         );
     }

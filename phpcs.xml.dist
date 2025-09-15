@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="t3n">
+<ruleset name="oniva">
     <arg name="basepath" value="."/>
     <arg name="extensions" value="php"/>
     <arg name="parallel" value="80"/>
@@ -10,7 +10,7 @@
     <arg value="nps"/>
 
     <file>Classes</file>
-    <rule ref="t3n">
+    <rule ref="oniva">
         <exclude name="PEAR.Commenting.FunctionComment.MissingParamComment"/>
         <exclude name="PEAR.Commenting.FunctionComment.Missing"/>
         <exclude name="PEAR.Commenting.FunctionComment.MissingReturn"/>

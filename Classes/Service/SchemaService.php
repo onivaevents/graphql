@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace t3n\GraphQL\Service;
+namespace Oniva\GraphQL\Service;
 
 use GraphQL\Language\Parser;
 use GraphQL\Type\Schema;
@@ -16,9 +16,9 @@ use Neos\Flow\Annotations as Flow;
 use Neos\Flow\ObjectManagement\ObjectManagerInterface;
 use Neos\Utility\Files;
 use Neos\Utility\PositionalArraySorter;
-use t3n\GraphQL\Resolvers;
-use t3n\GraphQL\SchemaEnvelopeInterface;
-use t3n\GraphQL\Transform\FlowErrorTransform;
+use Oniva\GraphQL\Resolvers;
+use Oniva\GraphQL\SchemaEnvelopeInterface;
+use Oniva\GraphQL\Transform\FlowErrorTransform;
 use TypeError;
 
 /**

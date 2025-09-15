@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace t3n\GraphQL\Http;
+namespace Oniva\GraphQL\Http;
 
 use GuzzleHttp\Psr7\Response;
 use Neos\Flow\Annotations as Flow;

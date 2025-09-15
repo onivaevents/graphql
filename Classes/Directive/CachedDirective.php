@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace t3n\GraphQL\Directive;
+namespace Oniva\GraphQL\Directive;
 
 use GraphQL\Type\Definition\FieldDefinition;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQLTools\SchemaDirectiveVisitor;
 use Neos\Flow\Annotations as Flow;
-use t3n\GraphQL\ResolveCacheInterface;
-use t3n\GraphQL\Service\DefaultFieldResolver;
+use Oniva\GraphQL\ResolveCacheInterface;
+use Oniva\GraphQL\Service\DefaultFieldResolver;
 
 class CachedDirective extends SchemaDirectiveVisitor
 {

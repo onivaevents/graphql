@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace t3n\GraphQL\Controller;
+namespace Oniva\GraphQL\Controller;
 
 use GraphQL\GraphQL;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\Controller\ActionController;
-use t3n\GraphQL\Context;
-use t3n\GraphQL\Exception\InvalidContextException;
-use t3n\GraphQL\Log\RequestLoggerInterface;
-use t3n\GraphQL\Service\DefaultFieldResolver;
-use t3n\GraphQL\Service\SchemaService;
-use t3n\GraphQL\Service\ValidationRuleService;
+use Oniva\GraphQL\Context;
+use Oniva\GraphQL\Exception\InvalidContextException;
+use Oniva\GraphQL\Log\RequestLoggerInterface;
+use Oniva\GraphQL\Service\DefaultFieldResolver;
+use Oniva\GraphQL\Service\SchemaService;
+use Oniva\GraphQL\Service\ValidationRuleService;
 
 class GraphQLController extends ActionController
 {
@@ -90,7 +90,7 @@ class GraphQLController extends ActionController
 
         $context = new $contextClassname($this->controllerContext);
         if (! $context instanceof Context) {
-            throw new InvalidContextException('The configured Context must extend \t3n\GraphQL\Context', 1545945332);
+            throw new InvalidContextException('The configured Context must extend \Oniva\GraphQL\Context', 1545945332);
         }
 
         if (isset($endpointConfiguration['logRequests']) && $endpointConfiguration['logRequests'] === true) {

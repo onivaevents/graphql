@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace t3n\GraphQL;
+namespace Oniva\GraphQL;
 
 use ArrayAccess;
 use ArrayIterator;
@@ -12,7 +12,7 @@ use Neos\Flow\ObjectManagement\ObjectManagerInterface;
 use Neos\Flow\Reflection\ReflectionService;
 use ReflectionClass;
 use ReflectionMethod;
-use t3n\GraphQL\Exception\InvalidResolverException;
+use Oniva\GraphQL\Exception\InvalidResolverException;
 
 class Resolvers implements ArrayAccess, IteratorAggregate
 {

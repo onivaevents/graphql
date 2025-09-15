@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace t3n\GraphQL\Tests\Functional;
+namespace Oniva\GraphQL\Tests\Functional;
 
 use GuzzleHttp\Psr7\Uri;
 use Neos\Flow\Tests\FunctionalTestCase;
 use Neos\Utility\Files;
-use t3n\GraphQL\Service\SchemaService;
+use Oniva\GraphQL\Service\SchemaService;
 
 class GraphQLFunctionTestCase extends FunctionalTestCase
 {

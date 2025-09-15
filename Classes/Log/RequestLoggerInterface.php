@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace t3n\GraphQL\Log;
+namespace Oniva\GraphQL\Log;
 
 use Psr\Log\LoggerInterface;
 

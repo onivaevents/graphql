@@ -1,11 +1,11 @@
-t3n\GraphQL\ResolveCacheInterface:
+Oniva\GraphQL\ResolveCacheInterface:
   factoryObjectName: Neos\Flow\Cache\CacheManager
   factoryMethodName: getCache
   arguments:
     1:
-      value: t3n_GraphQL_Resolve
+      value: Oniva_GraphQL_Resolve
 
-t3n\GraphQL\Service\SchemaService:
+Oniva\GraphQL\Service\SchemaService:
   properties:
     'schemaCache':
       object:
@@ -13,9 +13,9 @@ t3n\GraphQL\Service\SchemaService:
         factoryMethodName: getCache
         arguments:
           1:
-            value: t3n_GraphQL_Schema
+            value: Oniva_GraphQL_Schema
 
-t3n\GraphQL\Log\RequestLoggerInterface:
+Oniva\GraphQL\Log\RequestLoggerInterface:
   scope: singleton
   factoryObjectName: Neos\Flow\Log\PsrLoggerFactoryInterface
   factoryMethodName: get

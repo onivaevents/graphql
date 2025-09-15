@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace t3n\GraphQL\Tests\Functional\Directive;
+namespace Oniva\GraphQL\Tests\Functional\Directive;
 
-use t3n\GraphQL\Directive\AuthDirective;
-use t3n\GraphQL\Tests\Functional\Directive\Fixtures\QueryResolver;
-use t3n\GraphQL\Tests\Functional\GraphQLFunctionTestCase;
+use Oniva\GraphQL\Directive\AuthDirective;
+use Oniva\GraphQL\Tests\Functional\Directive\Fixtures\QueryResolver;
+use Oniva\GraphQL\Tests\Functional\GraphQLFunctionTestCase;
 
 class AuthDirectiveTest extends GraphQLFunctionTestCase
 {
