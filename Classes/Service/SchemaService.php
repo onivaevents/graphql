@@ -11,7 +11,7 @@ use GraphQLTools\GraphQLTools;
 use GraphQLTools\SchemaDirectiveVisitor;
 use GraphQLTools\Transforms\Transform;
 use InvalidArgumentException;
-use Neos\Cache\Frontend\VariableFrontend;
+use Neos\Cache\Frontend\FrontendInterface;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\ObjectManagement\ObjectManagerInterface;
 use Neos\Utility\Files;
@@ -43,7 +43,7 @@ class SchemaService
     /**
      * @Flow\Inject
      *
-     * @var VariableFrontend
+     * @var FrontendInterface
      */
     protected $schemaCache;
 
