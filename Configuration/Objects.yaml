@@ -5,6 +5,16 @@ Oniva\GraphQL\ResolveCacheInterface:
     1:
       value: Oniva_GraphQL_Resolve
 
+Oniva\GraphQL\Controller\GraphQLController:
+  properties:
+    'persistedQueryCache':
+      object:
+        factoryObjectName: Neos\Flow\Cache\CacheManager
+        factoryMethodName: getCache
+        arguments:
+          1:
+            value: Oniva_GraphQL_PersistedQuery
+
 Oniva\GraphQL\Service\SchemaService:
   properties:
     'schemaCache':

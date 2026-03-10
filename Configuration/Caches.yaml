@@ -5,3 +5,7 @@ Oniva_GraphQL_Resolve:
 Oniva_GraphQL_Schema:
   frontend: Oniva\GraphQL\Cache\Frontend\ASTFrontend
   backend: Neos\Cache\Backend\FileBackend
+
+Oniva_GraphQL_PersistedQuery:
+  frontend: Neos\Cache\Frontend\VariableFrontend
+  backend: Neos\Cache\Backend\FileBackend

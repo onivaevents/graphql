@@ -21,6 +21,7 @@ Oniva:
   GraphQL:
     context: 'Oniva\GraphQL\Context'
     includeExceptionMessageInOutput: true
+    cacheNonPersistedQueries: false
     endpoints: []
 #      'some-endpoint':
 #        'logRequests': true  # if enabled all requests are logged
