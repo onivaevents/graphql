@@ -10,7 +10,6 @@ use GraphQL\Language\AST\DocumentNode;
 use GraphQL\Language\Parser;
 use GraphQL\Language\Source;
 use GraphQL\Validator\DocumentValidator;
-use GraphQL\Validator\Rules\QueryComplexity;
 use Neos\Cache\Frontend\FrontendInterface;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\Controller\ActionController;
@@ -57,6 +56,13 @@ class GraphQLController extends ActionController
      * @var bool
      */
     protected $cacheNonPersistedQueries;
+
+    /**
+     * @Flow\InjectConfiguration("nonCachableValidationRules")
+     *
+     * @var string[]
+     */
+    protected $nonCachableValidationRules;
 
     /**
      * @Flow\InjectConfiguration("endpoints")
@@ -199,7 +205,7 @@ class GraphQLController extends ActionController
     protected function filterCachableRules(array $validationRules, bool $cachable): array
     {
         return array_filter($validationRules, function ($rule) use ($cachable) {
-            return $rule instanceof QueryComplexity === !$cachable;
+            return in_array($rule::class, $this->nonCachableValidationRules) !== $cachable;
         });
     }
 }
