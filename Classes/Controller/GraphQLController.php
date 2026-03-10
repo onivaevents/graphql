@@ -10,6 +10,7 @@ use GraphQL\Language\AST\DocumentNode;
 use GraphQL\Language\Parser;
 use GraphQL\Language\Source;
 use GraphQL\Validator\DocumentValidator;
+use GraphQL\Validator\Rules\QueryComplexity;
 use Neos\Cache\Frontend\FrontendInterface;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\Controller\ActionController;
@@ -151,6 +152,8 @@ class GraphQLController extends ActionController
                 if ($documentNode !== null) {
                     // Validate the query against the schema before writing the cache.
                     $cachableRules = $this->filterCachableRules($validationRules, true);
+                    // Caching the complexity rule only is reliable if no cost directives are set on variable definitions.
+                    $this->prepareQueryComplexityRule($validationRules, $variables);
                     $validationErrorCount = count(DocumentValidator::validate($schema, $documentNode, $cachableRules));
                     if ($validationErrorCount === 0) {
                         $this->persistedQueryCache->set($cacheKey, $documentNode);
@@ -198,14 +201,23 @@ class GraphQLController extends ActionController
         return json_encode($result->toArray());
     }
 
-    /**
-     * The QueryComplexity validation rule is not cachable, so we need to filter it out
-     * @see GraphQL::promiseToExecute()
-     */
     protected function filterCachableRules(array $validationRules, bool $cachable): array
     {
         return array_filter($validationRules, function ($rule) use ($cachable) {
             return in_array($rule::class, $this->nonCachableValidationRules) !== $cachable;
         });
+    }
+
+    /**
+     * The QueryComplexity validation rule requires the raw variable values to be set.
+     * @see GraphQL::promiseToExecute()
+     */
+    protected function prepareQueryComplexityRule(array $validationRules, array $variableValues): void
+    {
+        foreach ($validationRules as $rule) {
+            if ($rule instanceof QueryComplexity) {
+                $rule->setRawVariableValues($variableValues);
+            }
+        }
     }
 }
