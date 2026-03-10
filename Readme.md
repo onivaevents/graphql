@@ -637,11 +637,11 @@ Oniva:
     endpoints:
       'some-endpoint':
         validationRules:
-          depth:
+          'GraphQL\Validator\Rules\QueryDepth':
             className: 'GraphQL\Validator\Rules\QueryDepth'
             arguments:
               maxDepth: 11
-          complexity:
+          'GraphQL\Validator\Rules\QueryComplexity':
             className: 'GraphQL\Validator\Rules\QueryComplexity'
             arguments:
               maxQueryComplexity: 1000
