@@ -212,7 +212,7 @@ class GraphQLController extends ActionController
      * The QueryComplexity validation rule requires the raw variable values to be set.
      * @see GraphQL::promiseToExecute()
      */
-    protected function prepareQueryComplexityRule(array $validationRules, array $variableValues): void
+    protected function prepareQueryComplexityRule(array $validationRules, ?array $variableValues): void
     {
         foreach ($validationRules as $rule) {
             if ($rule instanceof QueryComplexity) {
