@@ -105,6 +105,9 @@ class GraphQLController extends ActionController
         if ($variables !== null && is_string($this->request->getArgument('variables'))) {
             $variables = json_decode($this->request->getArgument('variables'), true);
         }
+        if ($extensions !== null && is_string($this->request->getArgument('extensions'))) {
+            $extensions = json_decode($this->request->getArgument('extensions'), true);
+        }
 
         $persistedQueryHash = $extensions['persistedQuery']['sha256Hash'] ?? null;
         $persistedQuery = is_string($persistedQueryHash);
