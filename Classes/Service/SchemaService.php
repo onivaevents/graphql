@@ -6,6 +6,7 @@ namespace Oniva\GraphQL\Service;
 
 use GraphQL\Language\Parser;
 use GraphQL\Type\Schema;
+use GraphQL\Utils\BuildSchema;
 use GraphQLTools\Generate\ConcatenateTypeDefs;
 use GraphQLTools\GraphQLTools;
 use GraphQLTools\SchemaDirectiveVisitor;
@@ -205,12 +206,23 @@ class SchemaService
         if (count($options['typeDefs']) > 0) {
             $cacheIdentifier = md5(serialize($options['typeDefs']));
             if ($this->schemaCache->has($cacheIdentifier)) {
-                $options['typeDefs'] = $this->schemaCache->get($cacheIdentifier);
+                $document = $this->schemaCache->get($cacheIdentifier);
+                $assumeValidSDL = true; // already validated when first cached
             } else {
-                $options['typeDefs'] = Parser::parse(ConcatenateTypeDefs::invoke($options['typeDefs']));
-                $this->schemaCache->set($cacheIdentifier, $options['typeDefs']);
+                $document = Parser::parse(ConcatenateTypeDefs::invoke($options['typeDefs']));
+                $this->schemaCache->set($cacheIdentifier, $document);
+                $assumeValidSDL = false;
             }
-            $schema = GraphQLTools::makeExecutableSchema($options);
+
+            $builtSchema = BuildSchema::buildAST($document, null, ['assumeValidSDL' => $assumeValidSDL]);
+            $schema = GraphQLTools::addResolveFunctionsToSchema([
+                'schema' => $builtSchema,
+                'resolvers' => $options['resolvers'],
+                'resolverValidationOptions' => $options['resolverValidationOptions'],
+            ]);
+            if (! empty($options['schemaDirectives'])) {
+                SchemaDirectiveVisitor::visitSchemaDirectives($schema, $options['schemaDirectives']);
+            }
         }
 
         if ($schema) {
