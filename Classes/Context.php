@@ -4,19 +4,20 @@ declare(strict_types=1);
 
 namespace Oniva\GraphQL;
 
-use Neos\Flow\Mvc\ActionRequest;
 use Neos\Flow\Mvc\Controller\ControllerContext;
+use Neos\Flow\Mvc\RequestInterface;
 
 class Context
 {
-    protected ActionRequest $request;
+    /** @var RequestInterface */
+    protected $request;
 
     public function __construct(ControllerContext $controllerContext)
     {
         $this->request = $controllerContext->getRequest()->getMainRequest();
     }
 
-    public function getRequest(): ActionRequest
+    public function getRequest(): RequestInterface
     {
         return $this->request;
     }
