@@ -205,8 +205,8 @@ class SchemaService
         $schema = null;
         if (count($options['typeDefs']) > 0) {
             $cacheIdentifier = md5(serialize($options['typeDefs']));
-            if ($this->schemaCache->has($cacheIdentifier)) {
-                $document = $this->schemaCache->get($cacheIdentifier);
+            $document = $this->schemaCache->has($cacheIdentifier) ? $this->schemaCache->get($cacheIdentifier) : false;
+            if ($document !== false) {
                 $assumeValidSDL = true; // already validated when first cached
             } else {
                 $document = Parser::parse(ConcatenateTypeDefs::invoke($options['typeDefs']));
