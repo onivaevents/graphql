@@ -44,7 +44,17 @@ class ASTFrontend extends PhpFrontend
             return false;
         }
 
-        return AST::fromArray($this->requireOnce($entryIdentifier));
+        try {
+            $data = $this->requireOnce($entryIdentifier);
+        } catch (\ParseError) {
+            // Entry is truncated: another request is still writing it (the backend
+            // reads without a lock) or a write was interrupted. Drop it and let the
+            // caller rebuild from source.
+            $this->backend->remove($entryIdentifier);
+            return false;
+        }
+
+        return is_array($data) ? AST::fromArray($data) : false;
     }
 
     /**
